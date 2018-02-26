@@ -32,29 +32,29 @@ assemblyJarName in assembly := s"${name.value}.jar"
 
 
 lazy val versions = new {
-  val finatra = "2.10.0"
-  val logback = "1.1.7"
+  val finatra = "18.2.0"
+  val logback = "1.2.3"
   val guice = "4.0"
-  val getquill = "1.3.0"
-  val slick = "3.2.0"
-  val hikaricp = "2.6.3"
+  val getquill = "2.3.2"
+  val slick = "3.2.1"
+  val hikaricp = "2.7.7"
   val slickJoda = "2.3.0"
   val mysqljdbc = "5.1.37"
   val jodaTime = "2.9.4"
   val jodaConvert = "1.8"
   val typesafeConfig = "1.3.0"
-  val scalatest = "3.0.2"
+  val scalatest = "3.0.4"
 //  val swagger = "0.6.0"
-  val ficus = "1.4.0" // for scala friendly typesafe config
-  val async = "0.9.6"
+  val ficus = "1.4.3" // for scala friendly typesafe config
   val mockito = "1.10.19"
+  val sangria = "1.4.0"
 }
 
 libraryDependencies ++= Seq(
 
   // finatra
   "com.twitter" %% "finatra-http" % versions.finatra,
-  "com.twitter" %% "finatra-slf4j" % versions.finatra,
+//  "com.twitter" %% "finatra-slf4j" % versions.finatra,
   "com.twitter" %% "finatra-httpclient" % versions.finatra,
 
   // quill
@@ -69,11 +69,12 @@ libraryDependencies ++= Seq(
   "joda-time" % "joda-time" % versions.jodaTime,
   "org.joda" % "joda-convert" % versions.jodaConvert,
 
-  // scala async
-  "org.scala-lang.modules" %% "scala-async" %  versions.async,
+  // graphql
+  "org.sangria-graphql" %% "sangria" % versions.sangria,
+  "com.github.ikhoon" %% "sangria-jackson" % "0.1.0-SNAPSHOT",
 
   // swagger
-  "com.jakehschwartz" %% "finatra-swagger" % versions.finatra,
+  "com.github.ikhoon" %% "finatra-swagger" % s"${versions.finatra}-SNAPSHOT",
 //  "com.github.xiaodongw" %% "swagger-finatra" % versions.swagger,
 
   // typesafe config
