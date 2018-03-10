@@ -3,13 +3,13 @@ package com.github.ikhoon.app.v1.user
 import javax.inject.Inject
 
 import com.github.ikhoon.core.FutureOption
-import com.github.ikhoon.persistence.quill.point.{ Points, QuillPointRepository }
-import com.github.ikhoon.persistence.quill.user.{ QuillUserRepository, Users }
+import com.github.ikhoon.persistence.quill.point.{Points, QuillPointRepository}
+import com.github.ikhoon.persistence.quill.user.{QuillUserRepository, Users}
 import com.twitter.util.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class UserPointService @Inject() (
-  quillUserRepository:  QuillUserRepository,
+class UserPointService @Inject()(
+  quillUserRepository: QuillUserRepository,
   quillPointRepository: QuillPointRepository
 ) {
   def getPointByUserEmail(email: String): Future[Option[Points]] =

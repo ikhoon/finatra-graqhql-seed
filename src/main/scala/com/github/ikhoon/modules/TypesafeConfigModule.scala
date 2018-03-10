@@ -3,8 +3,8 @@ package com.github.ikhoon.modules
 import javax.inject.Singleton
 
 import com.google.inject.Provides
-import com.twitter.inject.{ Logging, TwitterModule }
-import com.typesafe.config.{ Config, ConfigFactory }
+import com.twitter.inject.{Logging, TwitterModule}
+import com.typesafe.config.{Config, ConfigFactory}
 
 object TypesafeConfigModule extends TwitterModule with Logging {
 
@@ -13,8 +13,8 @@ object TypesafeConfigModule extends TwitterModule with Logging {
   val configPath = "conf/"
 
   private lazy val config = {
-    logger info s"LOADING CONFIG FROM: ${mode()}"
-    ConfigFactory load (configPath + mode())
+    logger.info(s"LOADING CONFIG FROM: ${mode()}")
+    ConfigFactory.load(configPath + mode())
   }
 
   @Provides @Singleton

@@ -4,11 +4,13 @@ import javax.inject.Inject
 
 import com.github.ikhoon.persistence.quill.user.QuillUserRepository
 import com.github.ikhoon.persistence.slick.user.SlickUserRepository
-import com.twitter.util.Future
-import com.github.ikhoon.TwitterFutureOps._
+
+import scala.concurrent.Future
+//import com.twitter.util.Future
+import com.github.ikhoon.TwitterConverters._
 import scala.concurrent.ExecutionContext.Implicits.global
 
-class UserService @Inject() (
+class UserService @Inject()(
   quillUserRepository: QuillUserRepository,
   slickUserRepository: SlickUserRepository
 ) {
@@ -18,7 +20,7 @@ class UserService @Inject() (
   }
 
   def findByIdWithSlick(id: Long): Future[Option[UserDto]] = {
-    slickUserRepository.findById(id).map(_.map(user => UserDto(user.id.toInt, user.name))).toTwitterFuture
+    slickUserRepository.findById(id).map(_.map(user => UserDto(user.id.toInt, user.name)))
   }
 
 }

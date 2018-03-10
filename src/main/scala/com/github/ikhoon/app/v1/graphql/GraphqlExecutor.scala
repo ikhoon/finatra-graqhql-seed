@@ -18,7 +18,11 @@ import scala.concurrent.ExecutionContext.Implicits.global
   */
 class GraphqlExecutor @Inject()(appContext: AppContext) {
 
-  def execute(queryAst: Document, variables: Option[JsonNode], operationName: Option[String]): Future[ExecutionResult[AppContext, JsonNode]] = {
+  def execute(
+    queryAst: Document,
+    variables: Option[JsonNode],
+    operationName: Option[String]
+  ): Future[ExecutionResult[AppContext, JsonNode]] = {
     Executor.execute[AppContext, Unit, JsonNode](
       schema = AppSchema.schema,
       queryAst = queryAst,

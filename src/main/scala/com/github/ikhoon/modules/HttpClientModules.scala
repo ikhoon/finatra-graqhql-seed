@@ -1,6 +1,6 @@
 package com.github.ikhoon.modules
 
-import javax.inject.{ Named, Singleton }
+import javax.inject.{Named, Singleton}
 
 import com.google.inject.Provides
 import com.twitter.finatra.httpclient.HttpClient
@@ -15,20 +15,20 @@ object HttpClientModules {
 }
 
 /**
- * Finatra Http Client - BasicHttpClientModule Usage :
- * {{{
- * import com.twitter.finatra.json.FinatraObjectMapper
- * import com.typesafe.config.Config
- * import net.ceedubs.ficus.Ficus._
- * object QueryHttpClientModule {
- *   def apply() = new BasicHttpClientModule() {
- *     @Named("query") @Singleton @Provides
- *     def provideHttpClient(mapper: FinatraObjectMapper, config: Config) =
- *       super.provideHttpClient(mapper, config.as[String]("query.host"), config.as[Int]("query.port"))
- *   }
- * }
- * }}}
- */
+  * Finatra Http Client - BasicHttpClientModule Usage :
+  * {{{
+  * import com.twitter.finatra.json.FinatraObjectMapper
+  * import com.typesafe.config.Config
+  * import net.ceedubs.ficus.Ficus._
+  * object QueryHttpClientModule {
+  *   def apply() = new BasicHttpClientModule() {
+  *     @Named("query") @Singleton @Provides
+  *     def provideHttpClient(mapper: FinatraObjectMapper, config: Config) =
+  *       super.provideHttpClient(mapper, config.as[String]("query.host"), config.as[Int]("query.port"))
+  *   }
+  * }
+  * }}}
+  */
 abstract class BasicHttpClientModule() extends TwitterModule {
 
   protected def provideHttpClient(mapper: FinatraObjectMapper, host: String, port: Int = 80): HttpClient = {

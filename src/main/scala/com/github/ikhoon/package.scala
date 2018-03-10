@@ -2,11 +2,11 @@ package com.github
 
 package object ikhoon {
 
-  import com.twitter.{ util => twitter }
+  import com.twitter.{util => twitter}
 
   import language.implicitConversions
-  import scala.concurrent.{ ExecutionContext, Future, Promise }
-  import scala.util.{ Failure, Success, Try }
+  import scala.concurrent.{ExecutionContext, Future, Promise}
+  import scala.util.{Failure, Success, Try}
   import TwitterConverters._
 
   object TwitterFutureOps {
@@ -38,13 +38,13 @@ package object ikhoon {
 
     implicit def scalaToTwitterFuture[T](f: Future[T])(implicit ec: ExecutionContext): twitter.Future[T] = {
       val promise = twitter.Promise[T]()
-      f.onComplete(promise update _)
+      f.onComplete(promise.update(_))
       promise
     }
 
     implicit def twitterToScalaFuture[T](f: twitter.Future[T]): Future[T] = {
       val promise = Promise[T]()
-      f.respond(promise complete _)
+      f.respond(promise.complete(_))
       promise.future
     }
   }

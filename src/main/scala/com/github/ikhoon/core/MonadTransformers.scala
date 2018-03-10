@@ -25,7 +25,7 @@ case class FutureOption[+A](future: Future[Option[A]]) extends AnyVal {
 case class FutureSeq[+A](future: Future[Seq[A]]) extends AnyVal {
   def flatMap[B](f: A => FutureSeq[B])(implicit ec: ExecutionContext): FutureSeq[B] =
     FutureSeq(future.flatMap {
-      case a => Future.collect(a.map(f andThen (_.future))).map(_.flatten)
+      case a => Future.collect(a.map(f.andThen(_.future))).map(_.flatten)
     })
 
   def map[B](f: A => B)(implicit ec: ExecutionContext): FutureSeq[B] = FutureSeq(future.map(_.map(f)))

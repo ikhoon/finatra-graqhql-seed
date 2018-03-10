@@ -9,7 +9,7 @@ import org.joda.time.DateTime
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
-class SlickUserRepository @Inject() (db: SlickDatabaseSource) {
+class SlickUserRepository @Inject()(db: SlickDatabaseSource) {
 
   import driver.api._
   private class UserTable(tag: Tag) extends Table[Users](tag, "users") {
@@ -23,8 +23,8 @@ class SlickUserRepository @Inject() (db: SlickDatabaseSource) {
 
   def findById(id: Long): Future[Option[Users]] = {
     db.run {
-      users.filter(_.id === id).take(1).result
-    }.map(_.headOption)
+        users.filter(_.id === id).take(1).result
+      }
+      .map(_.headOption)
   }
 }
-

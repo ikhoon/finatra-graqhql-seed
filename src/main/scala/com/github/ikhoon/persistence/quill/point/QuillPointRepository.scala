@@ -1,6 +1,6 @@
 package com.github.ikhoon.persistence.quill.point
 
-import javax.inject.{ Inject, Singleton }
+import javax.inject.{Inject, Singleton}
 
 import com.github.ikhoon.core.quill.QuillExtensions
 import com.github.ikhoon.modules.QuillDatabaseModule._
@@ -8,7 +8,7 @@ import com.twitter.util.Future
 import io.getquill._
 
 @Singleton
-class QuillPointRepository @Inject() (val ctx: QuillDatabaseSource) extends QuillExtensions {
+class QuillPointRepository @Inject()(val ctx: QuillDatabaseSource) extends QuillExtensions {
 
   import ctx._
 
